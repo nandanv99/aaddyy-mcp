@@ -1,0 +1,94 @@
+# AADDYY MCP Server - Cursor Rules
+
+## Project Overview
+
+MCP (Model Context Protocol) server that exposes AADDYY's 100+ AI tools to Cursor, Claude Code, Windsurf, and any MCP-compatible client. Tools are dynamically loaded from the AADDYY backend API at startup.
+
+### Tech Stack
+- **Runtime**: Node.js 18+ with TypeScript
+- **Protocol**: MCP SDK (`@modelcontextprotocol/sdk`)
+- **Transport**: stdio (standard for MCP servers)
+- **Schema Validation**: Zod (for MCP tool input schemas)
+- **Backend**: AADDYY API at `https://backend.aaddyy.com/api`
+
+---
+
+## Project Structure
+
+```
+src/
+├── index.ts     # Entry point — creates McpServer, registers tools, connects stdio
+├── client.ts    # HTTP client — fetchTools(), callTool(), callToolV2()
+└── tools.ts     # Dynamic tool registration — fetches from backend, builds Zod schemas
+```
+
+---
+
+## How It Works
+
+1. On startup, `fetchTools()` calls `GET /api/documentation/tools` on the AADDYY backend
+2. For each active tool, `registerAllTools()` builds a Zod input schema from `parameters.validation`
+3. Each tool is registered with `server.tool(name, description, schema, handler)`
+4. When an agent invokes a tool:
+   - **V1 tools**: Direct `POST` to `backend.aaddyy.com{tool.endpoint}`
+   - **V2 tools**: Submit job via `POST /api/v2/ai/{path}`, then poll `GET /api/v2/ai/jobs/{jobId}` every 2s until completed (max 600s)
+
+---
+
+## ⚠️ CRITICAL: When a New Tool is Added to the Backend
+
+### V1 tools (synchronous): NO changes needed here
+The MCP server fetches all active tools dynamically. New V1 tools appear automatically on restart.
+
+### V2 tools (async job queue): MUST update `V2_TOOL_IDS`
+If a new tool uses the V2 async pattern (submit → poll), add its tool ID to the `V2_TOOL_IDS` set in `src/tools.ts`:
+
+```typescript
+const V2_TOOL_IDS = new Set([
+  'ai-nano-banana-2',
+  'ai-image-prompt-creator',
+  // ... add new V2 tool ID here
+]);
+```
+
+**If you forget:** The MCP server will call the tool as V1 (synchronous) and receive a `{ jobId }` response instead of the actual result. The agent will see a jobId string instead of useful output.
+
+After updating, rebuild: `npx tsc`
+
+---
+
+## Auth
+
+- API key from `AADDYY_API_KEY` env var (required, format: `aip_*`)
+- All requests include `Authorization: Bearer {key}` and `User-Agent: aaddyy-mcp/1.0.0`
+- API key users must have verified email (enforced at key creation time on backend)
+
+---
+
+## Tool Naming Convention
+
+Backend tool ID → MCP tool name:
+- `ai-article-generator` → `aaddyy_article_generator`
+- `ai-math-solver` → `aaddyy_math_solver`
+- Pattern: strip `ai-` prefix, replace `-` with `_`, prepend `aaddyy_`
+
+---
+
+## Building & Testing
+
+```bash
+npx tsc              # Build to dist/
+npm run dev          # Run with tsx (development)
+npm start            # Run built version
+
+# Test locally:
+AADDYY_API_KEY=aip_test npx tsx src/index.ts
+```
+
+---
+
+## Key Files in Other Repos
+
+- **Backend tool registry**: `aaddyy-backend/scripts/seed-ai-tools.js` — source of truth for all tool configs
+- **Backend documentation endpoint**: `aaddyy-backend/src/routes/documentation.js` — what this MCP server fetches
+- **Frontend developer docs**: `aaddyy-frontend/src/app/developer/` — human-facing API docs
