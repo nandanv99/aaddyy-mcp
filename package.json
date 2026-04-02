@@ -25,7 +25,7 @@
     "seo",
     "math-solver"
   ],
-  "author": "AADDYY <support@aaddyy.com>",
+  "author": "AADDYY <hello@aaddyy.com>",
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
