@@ -68,14 +68,27 @@ export interface ToolsListResponse {
   lastUpdated: string;
 }
 
-export async function fetchTools(): Promise<ToolDocumentation[]> {
-  const res = await fetch(`${BASE_URL}/documentation/tools`, {
-    headers: { 'User-Agent': USER_AGENT },
-  });
-  if (!res.ok) throw new Error(`Failed to fetch tools: ${res.status} ${res.statusText}`);
-  const data: ApiResponse<ToolsListResponse> = await res.json();
-  if (!data.success) throw new Error(`API error: ${data.message}`);
-  return data.data.tools.filter(t => t.status === 'active');
+export async function fetchTools(retries = 3, delayMs = 2000): Promise<ToolDocumentation[]> {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(`${BASE_URL}/documentation/tools`, {
+        headers: { 'User-Agent': USER_AGENT },
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+      const data: ApiResponse<ToolsListResponse> = await res.json();
+      if (!data.success) throw new Error(`API error: ${data.message}`);
+      return data.data.tools.filter(t => t.status === 'active');
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      if (attempt < retries) {
+        console.error(`[aaddyy-mcp] Failed to fetch tools (attempt ${attempt}/${retries}): ${msg}. Retrying in ${delayMs / 1000}s...`);
+        await new Promise(r => setTimeout(r, delayMs));
+      } else {
+        throw new Error(`Failed to fetch tools after ${retries} attempts: ${msg}`);
+      }
+    }
+  }
+  throw new Error('Unreachable');
 }
 
 export async function callTool(endpoint: string, method: string, body: Record<string, unknown>): Promise<unknown> {
@@ -89,12 +102,24 @@ export async function callTool(endpoint: string, method: string, body: Record<st
     },
     body: JSON.stringify(body),
   });
-  const data: ApiResponse = await res.json();
+  const data = await res.json() as Record<string, unknown>;
   if (!data.success) {
-    const errMsg = data.message || 'API call failed';
+    const error = data.error as Record<string, unknown> | undefined;
+    const code = error?.code || data.code || '';
+    const message = error?.message || data.message || 'API call failed';
+    const details = error?.details as Record<string, unknown> | undefined;
+
+    let errMsg = `${message}`;
+    if (code === 'INSUFFICIENT_CREDITS' && details) {
+      errMsg += ` (need ${details.required} credits, have ${details.available}). Top up at https://www.aaddyy.com/dashboard`;
+    } else if (code === 'RATE_LIMITED') {
+      errMsg += `. Try again shortly.`;
+    } else if (code === 'EMAIL_NOT_VERIFIED') {
+      errMsg += `. Verify your email at https://www.aaddyy.com to create API keys.`;
+    }
     throw new Error(errMsg);
   }
-  return data.data;
+  return (data as unknown as ApiResponse).data;
 }
 
 export interface V2SubmitResponse {
