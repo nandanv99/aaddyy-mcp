@@ -24,6 +24,7 @@ const V2_TOOL_IDS = new Set([
   'ai-audio-to-video',
   'ai-ghibli-generator',
   'ai-qr-code-generator',
+  'ai-face-swapper',
 ]);
 
 /**
