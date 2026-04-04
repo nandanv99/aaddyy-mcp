@@ -29,6 +29,7 @@ const V2_TOOL_IDS = new Set([
   'ai-grammar-checker',
   'ai-paraphraser',
   'ai-detector',
+  'ai-action-figure',
 ]);
 
 /**
