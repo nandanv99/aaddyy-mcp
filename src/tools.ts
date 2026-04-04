@@ -30,6 +30,7 @@ const V2_TOOL_IDS = new Set([
   'ai-paraphraser',
   'ai-detector',
   'ai-action-figure',
+  'ai-cover-letter-creator',
 ]);
 
 /**
