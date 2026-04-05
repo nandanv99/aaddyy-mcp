@@ -31,6 +31,7 @@ const V2_TOOL_IDS = new Set([
   'ai-detector',
   'ai-action-figure',
   'ai-cover-letter-creator',
+  'ai-cv-resume-creator',
 ]);
 
 /**
