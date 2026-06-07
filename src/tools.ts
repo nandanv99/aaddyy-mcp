@@ -9,6 +9,7 @@ import { fetchTools, callTool, callToolV2, type ToolDocumentation } from './clie
 
 // Tools that use V2 async job queue (submit → poll)
 const V2_TOOL_IDS = new Set([
+  'ai-background-remover',
   'ai-nano-banana-2',
   'ai-image-prompt-creator',
   'ai-prompt-maker',
@@ -16,12 +17,14 @@ const V2_TOOL_IDS = new Set([
   'ai-watermark-remover',
   'ai-instagram-post-generator',
   'ai-linkedin-post-generator',
+  'ai-thread-generator',
   'ai-product-photo-studio',
   'ai-research-blog-writer',
   'ai-content-curator',
   'ai-pdf-merge',
   'ai-edu-clip-generator',
   'ai-audio-to-video',
+  'ai-seedance-video-generator',
   'ai-ghibli-generator',
   'ai-qr-code-generator',
   'ai-face-swapper',
