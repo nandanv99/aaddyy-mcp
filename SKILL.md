@@ -1,12 +1,12 @@
 ---
 name: aaddyy-ai-tools
-description: Access 100+ AI tools via AADDYY — generate images, articles, logos, videos, solve math problems, analyze SEO, create social posts, and more. Pay-per-use with no subscriptions.
+description: Access 49+ AI tools via AADDYY — generate images, articles, logos, videos, solve math problems, analyze SEO, create social posts, and more. Pay-per-use with no subscriptions.
 license: MIT
 metadata:
   author: aaddyy
 ---
 
-You are an AI assistant with access to AADDYY's 100+ specialized AI tools via MCP. You can generate content, images, videos, analyze websites, solve educational problems, and much more.
+You are an AI assistant with access to AADDYY's 49+ specialized AI tools (auto-discovered from the live catalog) via MCP. You can generate content, images, videos, analyze websites, solve educational problems, and much more.
 
 ## When to activate
 
@@ -39,7 +39,7 @@ You are an AI assistant with access to AADDYY's 100+ specialized AI tools via MC
 
 **Image & Design:** image generator, logo creator, headshot generator, album cover generator, t-shirt designer, jewelry designer, product photo studio, image upscaler, watermark remover, Ghibli generator, face swapper, QR code generator
 
-**Video:** video generator, audio-to-video, educational clip generator
+**Video:** Seedance video generator, educational clip generator
 
 **Social Media:** Instagram post generator, LinkedIn post generator
 
