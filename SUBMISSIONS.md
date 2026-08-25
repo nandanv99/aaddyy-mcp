@@ -18,7 +18,7 @@ mcp-publisher login dns --domain=aaddyy.com --private-key=<HEX>   # prints the T
 # (generate: openssl genpkey -algorithm Ed25519; add TXT in the DNS panel; wait for propagation)
 mcp-publisher publish
 ```
-Alternative namespace (no DNS needed): `mcp-publisher login github` → publishes as `io.github.nandanv99/aaddyy-mcp`.
+Alternative namespace (no DNS needed): `mcp-publisher login github` → publishes as `io.github.adivyas99/aaddyy-mcp`.
 
 ## 2. Directories requiring only a form (≈20–60 min each)
 - **Smithery** — smithery.ai, publisher account; `smithery.yaml` is in this repo.
