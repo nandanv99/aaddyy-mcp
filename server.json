@@ -1,0 +1,34 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "com.aaddyy/aaddyy",
+  "description": "49+ outcome-level AI tools (articles, logos, resumes, images, video, SEO) behind one pay-per-use API. Keyless discovery, one-call agent account creation, free credits with no card.",
+  "status": "active",
+  "version": "1.1.0",
+  "websiteUrl": "https://www.aaddyy.com",
+  "repository": {
+    "url": "https://github.com/nandanv99/aaddyy-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://backend.aaddyy.com/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@aaddyy/mcp-server",
+      "version": "1.0.2",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "AADDYY_API_KEY",
+          "description": "AADDYY API key (aip_...). Create one at https://www.aaddyy.com/api-keys or via POST https://backend.aaddyy.com/api/auth/quick-register",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
