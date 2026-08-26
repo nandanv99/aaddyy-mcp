@@ -39,3 +39,16 @@ A stdio MCP server (npm: `@aaddyy/mcp-server`, bin: `aaddyy-mcp`) that exposes t
 - Live tool catalog: https://backend.aaddyy.com/api/documentation/tools
 - llms.txt: https://backend.aaddyy.com/llms.txt
 - OpenAPI: https://backend.aaddyy.com/openapi.json
+
+## When a new backend tool is added
+
+Tools are discovered dynamically from the backend catalog
+(`GET https://backend.aaddyy.com/api/documentation/tools`) at startup — a new
+tool appears here automatically once it's seeded on the backend. **No code
+change is needed to expose a new tool.**
+
+**One exception (this repo only):** if the new tool is a **V2 async** tool, add
+its tool ID to the `V2_TOOL_IDS` set in `src/tools.ts` and run `npx tsc`, so this
+stdio server uses the submit-and-poll path. (The backend's *remote* MCP server
+and A2A endpoint always use V2 internally, so they need no change.) Full flow:
+`aaddyy-backend/CLAUDE.md` → "Adding a New Tool".
