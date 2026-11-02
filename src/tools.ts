@@ -35,6 +35,8 @@ const V2_TOOL_IDS = new Set([
   'ai-action-figure',
   'ai-cover-letter-creator',
   'ai-cv-resume-creator',
+  'ai-wedding-invitation-card-maker',
+  'ai-festival-greeting-card-maker',
 ]);
 
 /**
