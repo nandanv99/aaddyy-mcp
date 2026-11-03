@@ -36,6 +36,13 @@ export interface ToolDocumentation {
     currency: string;
     unit: string;
   };
+  /** Cheapest valid use in credits (1 credit = $0.01), from the backend's price functions. */
+  credits?: number | null;
+  /** Cheapest valid use in USD. */
+  priceFrom?: number | null;
+  priceUnit?: string | null;
+  /** Set when the price depends on the inputs (length, quality, count...). */
+  pricingNote?: string | null;
   parameters: {
     required: string[];
     optional: string[];
