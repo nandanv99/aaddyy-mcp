@@ -4,11 +4,11 @@ Instructions for coding agents working with or on this package.
 
 ## What this is
 
-A stdio MCP server (npm: `@aaddyy/mcp-server`, bin: `aaddyy-mcp`) that exposes the AADDYY AI-tools API to MCP clients. At startup it fetches the live catalog (49+ tools) from `GET https://backend.aaddyy.com/api/documentation/tools` and registers each active tool dynamically — there is no hardcoded tool list. Machine-readable API overview: https://backend.aaddyy.com/llms.txt
+A stdio MCP server (npm: `@aaddyy/mcp-server`, bin: `aaddyy-mcp`) that exposes the AADDYY AI-tools API to MCP clients. At startup it fetches the live catalog (50+ tools) from `GET https://backend.aaddyy.com/api/documentation/tools` and registers each active tool dynamically — there is no hardcoded tool list. Machine-readable API overview: https://backend.aaddyy.com/llms.txt
 
 ## Auth
 
-- API keys start with `aip_` and are created at https://www.aaddyy.com/api-keys (email verification required).
+- API keys start with `aip_` and are created at https://www.aaddyy.com/api-keys or with `POST /api/users/api-keys`. An unverified account can hold one key, with limits: it expires, and it has a lower rate limit and a spend cap. Verifying the email lifts them.
 - Every API request sends `Authorization: Bearer aip_<key>`.
 - The server reads the key from the `AADDYY_API_KEY` env var and exits if it is missing.
 

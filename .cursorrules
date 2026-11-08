@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-MCP (Model Context Protocol) server that exposes AADDYY's 49+ AI tools (auto-discovered from the live catalog) to Cursor, Claude Code, Windsurf, and any MCP-compatible client. Tools are dynamically loaded from the AADDYY backend API at startup.
+MCP (Model Context Protocol) server that exposes AADDYY's 50+ AI tools (auto-discovered from the live catalog) to Cursor, Claude Code, Windsurf, and any MCP-compatible client. Tools are dynamically loaded from the AADDYY backend API at startup.
 
 ### Tech Stack
 - **Runtime**: Node.js 18+ with TypeScript

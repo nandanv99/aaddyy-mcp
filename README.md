@@ -1,6 +1,6 @@
 # @aaddyy/mcp-server
 
-MCP server for [AADDYY](https://www.aaddyy.com) — use 49+ AI tools (auto-discovered from the live catalog) directly from Cursor, Claude Code, Windsurf, and any MCP-compatible client.
+MCP server for [AADDYY](https://www.aaddyy.com) — use 50+ AI tools (auto-discovered from the live catalog) directly from Cursor, Claude Code, Windsurf, and any MCP-compatible client.
 
 ## Install
 
@@ -99,7 +99,7 @@ The agent will use AADDYY tools automatically. Async (V2) tools are handled for 
 
 ## Pricing
 
-Pay-per-use. 1 credit = $0.01. Most tools cost 1-10 credits.
+Pay-per-use: 1 credit = $0.01. Each tool's price is in the [live catalog](https://backend.aaddyy.com/api/documentation/tools) (`credits`, `priceFrom`).
 New accounts get 50 free credits ($0.50).
 
 ## Environment Variables

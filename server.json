@@ -1,12 +1,12 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "com.aaddyy/aaddyy",
-  "description": "49+ outcome-level AI tools (articles, logos, resumes, images, video, SEO) behind one pay-per-use API. Keyless discovery, one-call agent account creation, free credits with no card.",
+  "description": "50+ outcome-level AI tools (articles, logos, resumes, images, video, SEO) behind one pay-per-use API. Keyless discovery, one-call agent account creation, free credits with no card.",
   "status": "active",
   "version": "1.1.0",
   "websiteUrl": "https://www.aaddyy.com",
   "repository": {
-    "url": "https://github.com/adivyas99/aaddyy-mcp",
+    "url": "https://github.com/nandanv99/aaddyy-mcp",
     "source": "github"
   },
   "remotes": [

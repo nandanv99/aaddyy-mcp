@@ -1,7 +1,7 @@
 {
   "name": "@aaddyy/mcp-server",
   "version": "1.0.2",
-  "description": "MCP server for AADDYY AI Tools \u2014 use 49+ AI tools (auto-discovered from the live catalog) from Cursor, Claude Code, Windsurf",
+  "description": "MCP server for AADDYY AI Tools \u2014 use 50+ AI tools (auto-discovered from the live catalog) from Cursor, Claude Code, Windsurf",
   "main": "./dist/index.js",
   "bin": {
     "aaddyy-mcp": "./dist/index.js"
@@ -44,10 +44,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/adivyas99/aaddyy-mcp.git"
+    "url": "git+https://github.com/nandanv99/aaddyy-mcp.git"
   },
   "homepage": "https://www.aaddyy.com",
   "bugs": {
-    "url": "https://github.com/adivyas99/aaddyy-mcp/issues"
+    "url": "https://github.com/nandanv99/aaddyy-mcp/issues"
   }
 }
