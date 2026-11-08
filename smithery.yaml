@@ -1,0 +1,16 @@
+# Smithery listing config — https://smithery.ai/docs
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required: [aaddyyApiKey]
+    properties:
+      aaddyyApiKey:
+        type: string
+        description: "AADDYY API key (aip_...). No account? POST https://backend.aaddyy.com/api/auth/quick-register {\"email\"} then POST /api/users/api-keys — or use the keyless remote endpoint https://backend.aaddyy.com/mcp and its create_account tool."
+  commandFunction: |-
+    (config) => ({
+      command: 'npx',
+      args: ['-y', '@aaddyy/mcp-server'],
+      env: { AADDYY_API_KEY: config.aaddyyApiKey }
+    })

@@ -3,7 +3,7 @@
 /**
  * AADDYY MCP Server
  *
- * Exposes 100+ AADDYY AI tools to Cursor, Claude Code, Windsurf, and any MCP-compatible client.
+ * Exposes 50+ AADDYY AI tools (auto-discovered from the live catalog) to Cursor, Claude Code, Windsurf, and any MCP-compatible client.
  * Tools are dynamically loaded from the AADDYY API at startup — no hardcoding.
  *
  * Setup:
@@ -28,7 +28,7 @@ import { registerAllTools } from './tools.js';
 async function main() {
   const server = new McpServer({
     name: 'aaddyy',
-    version: '1.0.0',
+    version: '1.0.3',
   });
 
   // Dynamically register all AADDYY tools from the backend API
