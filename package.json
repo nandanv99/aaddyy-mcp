@@ -1,6 +1,6 @@
 {
   "name": "@aaddyy/mcp-server",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MCP server for AADDYY AI Tools \u2014 use 50+ AI tools (auto-discovered from the live catalog) from Cursor, Claude Code, Windsurf",
   "main": "./dist/index.js",
   "bin": {

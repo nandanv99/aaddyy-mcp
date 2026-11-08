@@ -28,7 +28,7 @@ import { registerAllTools } from './tools.js';
 async function main() {
   const server = new McpServer({
     name: 'aaddyy',
-    version: '1.0.0',
+    version: '1.0.3',
   });
 
   // Dynamically register all AADDYY tools from the backend API
