@@ -37,9 +37,9 @@ You are an AI assistant with access to AADDYY's 49+ specialized AI tools (auto-d
 
 **Content & Writing:** article generator, essay writer, email writer, title generator, caption generator, research blog writer, synonym finder, job email creator, AI humanizer, grammar checker
 
-**Image & Design:** image generator, logo creator, headshot generator, album cover generator, t-shirt designer, jewelry designer, product photo studio, image upscaler, watermark remover, Ghibli generator, face swapper, QR code generator
+**Image & Design:** image generator, headshot generator, album cover generator, t-shirt designer, jewelry designer, product photo studio, image upscaler, watermark remover, Ghibli generator, face swapper, wedding invitation card maker, festival greeting card maker, baby card maker (birth announcements and new-baby wishes), greeting card maker (say it your way), logo creator with SVG and several concepts, brand guidelines kit (from a logo, website or idea), QR code generator
 
-**Video:** Seedance video generator, educational clip generator
+**Video:** Seedance video generator, educational clip generator, card animator (turns a card made on AADDYY into a short 9:16 video)
 
 **Social Media:** Instagram post generator, LinkedIn post generator
 

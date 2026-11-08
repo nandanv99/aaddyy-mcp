@@ -35,7 +35,33 @@ const V2_TOOL_IDS = new Set([
   'ai-action-figure',
   'ai-cover-letter-creator',
   'ai-cv-resume-creator',
+  'ai-wedding-invitation-card-maker',
+  'ai-festival-greeting-card-maker',
+  'ai-baby-card-maker',
+  'ai-greeting-card-maker',
+  'ai-card-animator',
+  'ai-brand-guideline-kit',
+  'ai-logo-creator',
 ]);
+
+/**
+ * The cost shown in a tool's description. The catalog's `credits` is the
+ * cheapest valid use from the backend's own price functions; `basePrice`
+ * alone is wrong for tools priced by length, quality or count. The catalog's
+ * pricingNote says "free", starts with "flat price" for one fixed price, and
+ * otherwise describes how the price grows with the inputs.
+ */
+export function costLabel(tool: Pick<ToolDocumentation, 'credits' | 'pricingNote' | 'pricing'>): string {
+  const note = typeof tool.pricingNote === 'string' ? tool.pricingNote.trim().toLowerCase() : '';
+  if (typeof tool.credits === 'number' && Number.isFinite(tool.credits)) {
+    if (tool.credits === 0 || note === 'free') return ' (free)';
+    const amount = `${tool.credits} credit${tool.credits === 1 ? '' : 's'}`;
+    if (note.startsWith('flat price')) return ` (${amount})`;
+    return note ? ` (from ${amount})` : ` (~${amount})`;
+  }
+  // Older backends publish only basePrice.
+  return tool.pricing?.basePrice ? ` (~${Math.round(tool.pricing.basePrice * 100)} credits)` : '';
+}
 
 /**
  * Map a validation type string to a Zod schema.
@@ -104,10 +130,7 @@ export async function registerAllTools(server: McpServer): Promise<number> {
   for (const tool of tools) {
     const mcpName = toMcpName(tool.id);
     const isV2 = V2_TOOL_IDS.has(tool.id);
-    const credits = tool.pricing?.basePrice
-      ? Math.round(tool.pricing.basePrice * 100)
-      : null;
-    const costStr = credits !== null ? ` (~${credits} credits)` : '';
+    const costStr = costLabel(tool);
 
     const inputSchema = buildInputSchema(tool);
 
